@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - feat/*
+
+jobs:
+  build:
+    name: CI Pipeline
+    runs-on:
+      group: Default
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: SOXAM/yliad-api
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Run build
+        run: ./gradlew clean build -x test
+
+      - name: create deploy.zip
+        run: zip -r deploy.zip .
