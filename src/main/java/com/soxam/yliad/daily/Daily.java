@@ -1,5 +1,8 @@
 package com.soxam.yliad.daily;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,4 +30,8 @@ public class Daily {
     private String title;
     private String url;
     private String content;
+    @Column(name = "create_time")
+    private LocalDateTime createTime;
+    @Column(name = "modified_time")
+    private LocalDateTime modifiedTime;
 }

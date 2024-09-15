@@ -1,5 +1,6 @@
 package com.soxam.yliad.daily;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ public class DailyService {
     }
 
     Daily newDaily(Daily newDaily) {
+        newDaily.setCreateTime(LocalDateTime.now());
+        newDaily.setModifiedTime(LocalDateTime.now());
         return dailyRepository.save(newDaily);
     }
 
@@ -32,10 +35,11 @@ public class DailyService {
                 daily.setTitle(newDaily.getTitle());
                 daily.setUrl(newDaily.getUrl());
                 daily.setContent(newDaily.getContent());
+                daily.setModifiedTime(LocalDateTime.now());
                 return dailyRepository.save(daily);
             })
             .orElseGet(() -> {
-                return dailyRepository.save(newDaily);
+                return newDaily(newDaily);
             });
     }
 
