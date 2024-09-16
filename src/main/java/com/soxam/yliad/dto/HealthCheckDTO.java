@@ -14,6 +14,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HealthCheckDTO {
-    private LocalDateTime date;
-    private String message;
+
+	private LocalDateTime date;
+
+	private String message;
+
 }

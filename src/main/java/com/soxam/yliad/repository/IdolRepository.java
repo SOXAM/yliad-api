@@ -7,5 +7,5 @@ import com.soxam.yliad.entity.IdolEntity;
 
 @Repository
 public interface IdolRepository extends JpaRepository<IdolEntity, Long> {
-    
+
 }

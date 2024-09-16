@@ -1,3 +1,12 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'io.spring.javaformat:spring-javaformat-gradle-plugin:0.0.43'
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.2'
@@ -7,11 +16,19 @@ plugins {
 group = 'com.soxam'
 version = '0.0.1-SNAPSHOT'
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+apply plugin: 'io.spring.javaformat'
+
+apply plugin: 'checkstyle'
+
+checkstyle {
+	toolVersion = '9.3'
 }
+
+// java {
+// 	toolchain {
+// 		languageVersion = JavaLanguageVersion.of(22)
+// 	}
+// }
 
 repositories {
 	mavenCentral()
@@ -31,6 +48,9 @@ dependencies {
 	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// checkstyle
+	checkstyle 'io.spring.javaformat:spring-javaformat-checkstyle:0.0.43'
 }
 
 tasks.named('test') {

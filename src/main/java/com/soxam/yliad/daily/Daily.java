@@ -22,16 +22,21 @@ import lombok.Setter;
 @Table(name = "yliad_daily")
 @Entity
 public class Daily {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
-    private String title;
-    private String url;
-    private String content;
-    @Column(name = "create_time")
-    private LocalDateTime createTime;
-    @Column(name = "modified_time")
-    private LocalDateTime modifiedTime;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	private String title;
+
+	private String url;
+
+	private String content;
+
+	@Column(name = "create_time")
+	private LocalDateTime createTime;
+
+	@Column(name = "modified_time")
+	private LocalDateTime modifiedTime;
+
 }

@@ -20,13 +20,15 @@ import lombok.Setter;
 @Entity
 @Table(name = "yliad_idol")
 public class IdolEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
-    @Column(name = "name")
-    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(name = "age")
-    private Integer age;
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "age")
+	private Integer age;
+
 }

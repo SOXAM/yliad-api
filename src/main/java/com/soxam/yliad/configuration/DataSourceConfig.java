@@ -9,13 +9,14 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 public class DataSourceConfig {
 
-    @Bean
-    public HikariDataSource mysqlDataSource() {
-        return DataSourceBuilder.create()
-                .url("jdbc:mysql://localhost/yliad_db")
-                .username("root")
-                .password("isamovingon")
-                .type(HikariDataSource.class)
-                .build();
-    }
+	@Bean
+	public HikariDataSource mysqlDataSource() {
+		return DataSourceBuilder.create()
+			.url("jdbc:mysql://localhost/yliad_db")
+			.username("root")
+			.password("isamovingon")
+			.type(HikariDataSource.class)
+			.build();
+	}
+
 }
