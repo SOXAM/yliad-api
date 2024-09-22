@@ -19,6 +19,7 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(authz -> authz.anyRequest().permitAll());
 		http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+		http.csrf(csrf -> csrf.disable());
 		return http.build();
 	}
 
