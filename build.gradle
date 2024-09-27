@@ -68,3 +68,21 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+tasks.register('procfile') {
+    bootJar.archiveFileName.set('application.jar')
+    dependsOn 'bootJar'
+    doFirst {
+        new File("build/libs", "Procfile").text = "web: java -jar ${bootJar.archiveFileName.get()}"
+    }
+}
+
+tasks.register('zipSourceBundle', Zip) {
+    dependsOn 'clean'
+    dependsOn 'procfile'
+    from('build/libs') {
+        include('application.jar')
+        include('Procfile')
+    }
+    archiveBaseName = 'beanstalk'
+}

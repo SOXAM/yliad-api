@@ -21,7 +21,20 @@ jobs:
           distribution: 'temurin'
 
       - name: Run build
-        run: ./gradlew clean build -x test
+        run: ./gradlew zipSourceBundle
 
       - name: create deploy.zip
-        run: zip -r deploy.zip .
+        run: cd build/libs && zip -r deploy.zip .
+
+       # Deploy
+      - name: deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v20
+        with:
+          aws_access_key: ${{ secrets.AWS_EB_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_EB_SECRET_ACCESS_KEY }}
+          application_name: yliad-api
+          environment_name: dev-yliad-api
+          region: ${{ secrets.AWS_REGION }}
+          version_label: ${{github.SHA}}
+          deployment_package: build/libs/deploy.zip
+          use_existing_version_if_available: true
